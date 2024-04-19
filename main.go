@@ -28,7 +28,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	db, err := sql.Open("mysql", "n96611fq_golang:3799102!Qsc@tcp(n96611fq.beget.tech:3306)/n96611fq_golang")
+	db, err := sql.Open("mysql", "admin:3799102@tcp(localhost:3306)/golang")
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +76,7 @@ func save_article(w http.ResponseWriter, r *http.Request) {
 	if title == "" || anons == "" || full_text == "" {
 		fmt.Fprintf(w, "Заполните все строки")
 	} else {
-		db, err := sql.Open("mysql", "n96611fq_golang:3799102!Qsc@tcp(n96611fq.beget.tech:3306)/n96611fq_golang")
+		db, err := sql.Open("mysql", "admin:3799102@tcp(localhost:3306)/golang")
 		if err != nil {
 			panic(err)
 		}
@@ -105,7 +105,7 @@ func show_post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	db, err := sql.Open("mysql", "n96611fq_golang:3799102!Qsc@tcp(n96611fq.beget.tech:3306)/n96611fq_golang")
+	db, err := sql.Open("mysql", "admin:3799102@tcp(localhost:3306)/golang")
 	if err != nil {
 		panic(err)
 	}
