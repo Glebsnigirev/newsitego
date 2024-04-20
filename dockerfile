@@ -6,6 +6,8 @@ WORKDIR /app
 RUN go mod download
 RUN go build -o main .
 
-EXPOSE 8080
+# EXPOSE 8080
 
-CMD ["go", "run", "main.go", "-port", "8000"]
+# CMD ["go", "run", "main.go", "-port", "8080"]
+
+ENTRYPOINT go run commands/main.go
