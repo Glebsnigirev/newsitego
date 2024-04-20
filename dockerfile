@@ -1,13 +1,19 @@
+# FROM golang:latest
+
+# COPY ./ /app
+# WORKDIR /app
+
+# RUN go mod vendor
+# RUN go build -o main .
+
+# EXPOSE 8080
+
+# ENTRYPOINT ./main
+                             
 FROM golang:latest
 
 COPY ./ /app
 WORKDIR /app
 
 RUN go mod download
-RUN go build -o main .
-
-# EXPOSE 8080
-
-# CMD ["go", "run", "main.go", "-port", "8080"]
-
-ENTRYPOINT go run commands/main.go
+CMD ["go", "run", "main.go"]

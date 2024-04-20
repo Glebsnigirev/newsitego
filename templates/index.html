@@ -2,25 +2,39 @@
 
 {{ template "header" }}
 
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading">Главная станица</h1>
-    <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, quisquam eveniet nostrum culpa nulla necessitatibus ea atque vel, perspiciatis odit cum voluptatem, ipsum provident assumenda sed ut odio facilis quo.</p>
-    
+<main role="main" class="inner cover">
+  <style>
+    .gallery {
+      display: flex;
+      justify-content: space-between;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  </head>
+  <body>
+  <section class="section section-first first-screen gallery">
+    <div class="row">
+      <div class="col">
+          <img src='image/1.jpg'>
+           <img src='image/2.jpg'>
+          <img src='image/3.jpg'>
+          <img src='image/4.jpg'>
+      </div>
+  </section>
     {{ range . }}
     <div class="alert alert-danger">
     <h2>{{ .Title }}</h2>
     <p>{{ .Anons }}</p>
-    <a href="/post/{{ .Id }}" class="btn btn-danger">Читать далее</a>
     </div>
     {{ else }}
-    <p class="lead">Статей нет!</p>
+
     {{ end }}
 
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Узнать больше</a>
-    </p>
   </main>
-
+  
 {{ template "footer" }}
 
   {{ end }}

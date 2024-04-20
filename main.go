@@ -16,19 +16,16 @@ type Article struct {
 }
 
 var posts = []Article{}
+
 var showPost = Article{}
 
 func index(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("templates/index.html", "templates/header.html", "templates/footer.html")
 
 	if err != nil {
-		// Если шаблоны не могут бresponseWriterыть загружены, возвращаем ошибку
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	// Убираем все строки, связанные с базой данных
-
 	t.ExecuteTemplate(w, "index", posts)
 }
 
@@ -79,8 +76,13 @@ func handlefunc() {
 	rtr.HandleFunc("/save_article", save_article).Methods("POST")
 	rtr.HandleFunc("/post/{id:[0-9]+}", show_post).Methods("GET")
 
+	// Добавляем обработчик для статических файлов изображений
+	rtr.PathPrefix("/image/").Handler(http.StripPrefix("/image/", http.FileServer(http.Dir("./image"))))
+
 	http.Handle("/", rtr)
-	// http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+	// Включаем обработку статических файлов
+	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("./image"))))
+	//http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.ListenAndServe(":8080", nil)
 }
 
